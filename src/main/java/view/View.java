@@ -16,8 +16,8 @@ import static view.TextConstant.*;
  */
 public class View {
 
-    //Locale locale= new Locale("ua", "UA");
-    Locale locale = new Locale("en");
+    Locale locale= new Locale("ua", "UA");
+    ///Locale locale = new Locale("en");
     public ResourceBundle bundle =
             ResourceBundle.getBundle(
                     "text", locale);

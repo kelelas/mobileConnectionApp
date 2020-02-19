@@ -7,7 +7,6 @@ import view.View;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
 
 import static java.util.Comparator.comparing;
@@ -16,29 +15,29 @@ public class InputUserInfo {
     private View view;
     private Model model;
     Scanner sc = new Scanner(System.in);
-    TariffSearcher tariffSearcher = new  TariffSearcher();
 
     public InputUserInfo(View view, Model model) {
         this.view = view;
         this.model = model;
     }
 
-    public Locale inputLanguageInfo(){
-        view.printMessage(TextConstant.INPUT_LANGUAGE);
-        int i = 0;
-        while (i < 1 || i > 2) {
-            i = Integer.parseInt(inputValueWithScanner(TextConstant.INPUT_LANGUAGE, Regex.REGEX_NUMBER));
-        }
-        if (i == 1){
-           return new Locale("en");
-        }else
-            return new Locale("ua", "UA");
-    }
+//    public Locale inputLanguageInfo(){
+//        view.printMessage(TextConstant.INPUT_LANGUAGE);
+//        int i = 0;
+//        while (i < 1 || i > 2) {
+//            i = Integer.parseInt(inputValueWithScanner(TextConstant.INPUT_LANGUAGE, Regex.REGEX_NUMBER));
+//        }
+//        if (i == 1){
+//           return new Locale("en");
+//        }else
+//            return new Locale("ua", "UA");
+//    }
     public void choseOperation(){
         int i = 0;
-        while (i < 1 || i >6) {
-            i = Integer.parseInt(inputValueWithScanner(TextConstant.INPUT_STRING_DATA, Regex.REGEX_NUMBER));
-        }
+        do {
+            i = Integer.parseInt(inputValueWithScanner(TextConstant.INPUT_STRING_DATA, Regex.REGEX_ONE_NUMBER));
+        }while (i < 1 || i >4) ;
+
         switch (i) {
             case (1):
                 List<TariffEnum> list = model.getTariffs();
@@ -66,8 +65,6 @@ public class InputUserInfo {
                     view.print(tariffEnum.toString());
                 }
                 break;
-            case (5):
-                break;
         }
 
     }
@@ -90,7 +87,7 @@ public class InputUserInfo {
         int min = 0;
         List<TariffEnum> tariffEnumList = new ArrayList<>();
         while (i < 1 || i > 4) {
-            i = Integer.parseInt(inputValueWithScanner(TextConstant.INPUT_CHOSE_PARAMS, Regex.REGEX_NUMBER));
+            i = Integer.parseInt(inputValueWithScanner(TextConstant.INPUT_CHOSE_PARAMS, Regex.REGEX_ONE_NUMBER));
         }
 
         while (min < 1 || min > 20000) {
@@ -107,16 +104,16 @@ public class InputUserInfo {
         System.out.println(max);
        switch (i){
            case (1):
-               tariffEnumList = tariffSearcher.findTariffsByTariffCost(min, max);
+               tariffEnumList = TariffSearcher.findTariffsByTariffCost(min, max);
                break;
            case (2):
-               tariffEnumList = tariffSearcher.findTariffsByMinutesCount(min, max);
+               tariffEnumList = TariffSearcher.findTariffsByMinutesCount(min, max);
                break;
            case(3):
-               tariffEnumList = tariffSearcher.findTariffsByMassageCount(min, max);
+               tariffEnumList = TariffSearcher.findTariffsByMassageCount(min, max);
                break;
            case (4):
-               tariffEnumList = tariffSearcher.findTariffsByInternetCount(min, max);
+               tariffEnumList = TariffSearcher.findTariffsByInternetCount(min, max);
                break;
        }
         return tariffEnumList;

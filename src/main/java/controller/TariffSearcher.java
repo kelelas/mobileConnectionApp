@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TariffSearcher {
-    Model model = new Model();
+
+    static Model model = new Model();
 
 
-    public List<TariffEnum> findTariffsByTariffCost(int min, int max){
+    public static List<TariffEnum> findTariffsByTariffCost(int min, int max){
         List<TariffEnum> list = new ArrayList<>();
         for (TariffEnum tariffEnum : model.getTariffs()){
             if (tariffEnum.getTariffCost() > min && tariffEnum.getTariffCost() < max){
@@ -19,7 +20,7 @@ public class TariffSearcher {
         }
         return list;
     }
-    public List<TariffEnum> findTariffsByMassageCount(int min, int max){
+    public static List<TariffEnum> findTariffsByMassageCount(int min, int max){
         List<TariffEnum> list = new ArrayList<>();
         for (TariffEnum tariffEnum : model.getTariffs()){
             if (tariffEnum.getMessagesCount() > min && tariffEnum.getMessagesCount() < max){
@@ -28,7 +29,7 @@ public class TariffSearcher {
         }
         return list;
     }
-    public List<TariffEnum> findTariffsByMinutesCount(int min, int max){
+    public static List<TariffEnum> findTariffsByMinutesCount(int min, int max){
         List<TariffEnum> list = new ArrayList<>();
         for (TariffEnum tariffEnum : model.getTariffs()){
             if (tariffEnum.getMinutesCount() > min && tariffEnum.getMinutesCount() < max){
@@ -37,7 +38,7 @@ public class TariffSearcher {
         }
         return list;
     }
-    public List<TariffEnum> findTariffsByInternetCount(int min, int max){
+    public static List<TariffEnum> findTariffsByInternetCount(int min, int max){
         List<TariffEnum> list = new ArrayList<>();
         for (TariffEnum tariffEnum : model.getTariffs()){
             if (tariffEnum.getInternetCount() > min && tariffEnum.getInternetCount() <= max){
