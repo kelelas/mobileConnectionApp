@@ -7,13 +7,14 @@ import java.util.List;
 /**
  * Created on 16.02.2020
  * @author Vladyslav Osypchuk
- * @version 1.1
+ * @version 2.1
  */
 public class Model {
     /**
      * array with tariffs
      */
     private static List<TariffEnum> tariffs = new ArrayList<TariffEnum>();
+    private  List<TariffEnum> SortTariffs = new ArrayList<TariffEnum>();
 
     /**
      *
@@ -46,5 +47,13 @@ public class Model {
      */
     public TariffEnum getTariffFromListByIndex(int index){
         return  tariffs.get(index);
+    }
+
+    public List<TariffEnum> getSortTariffs() {
+        return SortTariffs;
+    }
+
+    public void setSortTariffs(List<TariffEnum> sortTariffs) {
+        SortTariffs = sortTariffs;
     }
 }

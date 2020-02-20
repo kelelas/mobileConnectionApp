@@ -1,24 +1,20 @@
 package view;
 
-import controller.Controller;
-import controller.InputUserInfo;
-
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 
 import static view.TextConstant.*;
 
 /**
  * Created on 16.02.2020
  * @author Vladyslav Osypchuk
- * @version 1.1
+ * @version 2.1
  */
 public class View {
 
-    Locale locale= new Locale("ua", "UA");
-    ///Locale locale = new Locale("en");
-    public ResourceBundle bundle =
+    //Locale locale= new Locale("ua", "UA");
+    private Locale locale = new Locale("en");
+    private ResourceBundle bundle =
             ResourceBundle.getBundle(
                     "text", locale);
 
@@ -30,5 +26,9 @@ public class View {
     }
     public void printStringInput() {
         printMessage(bundle.getString(INPUT_STRING_DATA));
+    }
+    public void setLocale(Locale locale){
+        this.bundle = ResourceBundle.getBundle(
+                "text", locale);
     }
 }

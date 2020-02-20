@@ -3,7 +3,7 @@ package view;
 /**
  * Created on 16.02.2020
  * @author Vladyslav Osypchuk
- * @version 1.1
+ * @version 2.1
  */
 public interface TextConstant {
     String INPUT_STRING_DATA = "input.string.data";
@@ -16,4 +16,5 @@ public interface TextConstant {
     String INPUT_MAX = "input.string.writeMax";
     String INPUT_ERROR = "input.string.error";
     String INPUT_ERROR_OF_BOUND = "input.string.errorOfBound";
+    String INPUT_DIVIDER = "input.string.messageDivider";
 }
