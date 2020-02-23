@@ -3,18 +3,16 @@ package controller;
 import model.*;
 import view.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
-import static java.util.Comparator.comparing;
 
 
 /**
  * Created on 16.02.2020
  * @author Vladyslav Osypchuk
- * @version 2.1
+ * @version 3.2
  */
 public class Controller {
     private Model model;
@@ -26,19 +24,11 @@ public class Controller {
 
     public void processUser() {
         Scanner sc = new Scanner(System.in);
-        fillArray();
+        model.fillArray();
         view.setLocale(inputLanguageInfo(sc));
         choseOperation(sc);
     }
-    public void fillArray(){
-        model.addTariff(TariffEnum.BOMB);
-        model.addTariff(TariffEnum.LIFEHACK);
-        model.addTariff(TariffEnum.PLATINUM);
-        model.addTariff(TariffEnum.PREMIUM);
-        model.addTariff(TariffEnum.SMARTFAMILY);
-        model.addTariff(TariffEnum.HEAT);
-        model.addTariff(TariffEnum.FORBUSSINES);
-    }
+
     public  Locale inputLanguageInfo(Scanner scanner){
         int i = 0;
         while (i < 1 || i > 3) {
@@ -53,14 +43,14 @@ public class Controller {
 
 outer : while (true) {
     view.printMessage(TextConstant.INPUT_DIVIDER);
-    int i=0;
+    int operationNumber=0;
 
 
-    while (i < 1 || i >6) {
-        i = Integer.parseInt(inputValueWithScanner(scanner, TextConstant.INPUT_STRING_DATA, Regex.REGEX_ONE_NUMBER));
+    while (operationNumber < 1 || operationNumber >6) {
+        operationNumber = Integer.parseInt(inputValueWithScanner(scanner, TextConstant.INPUT_STRING_DATA, Regex.REGEX_ONE_NUMBER));
         view.printMessage(TextConstant.INPUT_DIVIDER);
     }
-    switch (i) {
+    switch (operationNumber) {
         case (1):
             view.printMessage(TextConstant.INPUT_LIST_OF_TARIFFS);
             for (TariffEnum tariffEnum : model.getTariffs()) {
@@ -69,7 +59,7 @@ outer : while (true) {
             break;
         case (2):
             view.printMessage(TextConstant.INPUT_LIST_OF_SORTED_TARIFFS);
-            for (TariffEnum tariffEnum : sortTariffList(model.getTariffs())) {
+            for (TariffEnum tariffEnum : model.sortTariffList(model.getTariffs())) {
                 view.print(tariffEnum.toString());
             }
             break;
@@ -96,38 +86,34 @@ outer : while (true) {
         }
         return res;
     }
-    public List<TariffEnum> sortTariffList(List<TariffEnum> tariffEnums){
-        List<TariffEnum> list = new ArrayList<>(tariffEnums);
-        list.sort(comparing(TariffEnum::getTariffCost));
-        return list;
-    }
+
     public List<TariffEnum> findTariffByParam(Scanner scanner){
-        int i = 0;
-        while (i < 1 || i > 5) {
-            i = Integer.parseInt(inputValueWithScanner(scanner, TextConstant.INPUT_CHOSE_PARAMS, Regex.REGEX_ONE_NUMBER));
+        int operationNumber = 0;
+        while (operationNumber < 1 || operationNumber > 5) {
+            operationNumber = Integer.parseInt(inputValueWithScanner(scanner, TextConstant.INPUT_CHOSE_PARAMS, Regex.REGEX_ONE_NUMBER));
         }
         int min;
-        switch (i){
+        switch (operationNumber){
             case (1):
 
-                model.setSortTariffs(TariffSearcher.findTariffsByTariffCost(min = minValue(scanner), maxValue(min, scanner)));
+                model.setSortTariffs(model.findTariffsByTariffCost(min = minValue(scanner), maxValue(min, scanner)));
                 view.printMessage(TextConstant.INPUT_DIVIDER);
                 view.printMessage(TextConstant.INPUT_LIST_OF_TARIFFS);
                 break;
             case (2):
-                model.setSortTariffs(TariffSearcher.findTariffsByMinutesCount(min = minValue(scanner), maxValue(min, scanner)));
+                model.setSortTariffs(model.findTariffsByMinutesCount(min = minValue(scanner), maxValue(min, scanner)));
                 view.printMessage(TextConstant.INPUT_DIVIDER);
                 view.printMessage(TextConstant.INPUT_LIST_OF_TARIFFS);
                 break;
             case(3):
 
-                model.setSortTariffs(TariffSearcher.findTariffsByMassageCount(min = minValue(scanner), maxValue(min, scanner)));
+                model.setSortTariffs(model.findTariffsByMassageCount(min = minValue(scanner), maxValue(min, scanner)));
                 view.printMessage(TextConstant.INPUT_DIVIDER);
                 view.printMessage(TextConstant.INPUT_LIST_OF_TARIFFS);
                 break;
             case (4):
 
-                model.setSortTariffs(TariffSearcher.findTariffsByInternetCount(min = minValue(scanner), maxValue(min, scanner)));
+                model.setSortTariffs(model.findTariffsByInternetCount(min = minValue(scanner), maxValue(min, scanner)));
                 view.printMessage(TextConstant.INPUT_DIVIDER);
                 view.printMessage(TextConstant.INPUT_LIST_OF_TARIFFS);
                 break;

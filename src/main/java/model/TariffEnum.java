@@ -4,7 +4,7 @@ package model;
 /**
  * Created on 16.02.2020
  * @author Vladyslav Osypchuk
- * @version 2.1
+ * @version 3.2
  */
 public enum TariffEnum {
     LIFEHACK(new UserTariff("life hack",23456, 150, 1500, 0, 20)),

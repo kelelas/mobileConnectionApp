@@ -8,7 +8,7 @@ import static view.TextConstant.*;
 /**
  * Created on 16.02.2020
  * @author Vladyslav Osypchuk
- * @version 2.1
+ * @version 3.2
  */
 public class View {
 

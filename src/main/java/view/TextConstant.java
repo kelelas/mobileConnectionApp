@@ -3,7 +3,7 @@ package view;
 /**
  * Created on 16.02.2020
  * @author Vladyslav Osypchuk
- * @version 2.1
+ * @version 3.2
  */
 public interface TextConstant {
     String INPUT_STRING_DATA = "input.string.data";
